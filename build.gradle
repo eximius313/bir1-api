@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        javaVersion = "1.9"
+        javaVersion = "1.8"
     }
     repositories {
         mavenCentral()
