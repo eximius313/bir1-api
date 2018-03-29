@@ -30,7 +30,6 @@ compileTestJava.options.encoding = 'UTF-8'
 
 
 group = 'eximius.bir1'
-version = '0.0.1-SNAPSHOT'
 description = 'Java API for Internet REGON Database (BIR1)'
 
 repositories {
