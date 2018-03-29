@@ -17,10 +17,10 @@ buildscript {
 
 plugins {
     id 'no.nils.wsdl2java' version '0.10'
+    id 'org.shipkit.java' version '2.0.13'
 }
 
 apply plugin: 'java-library'
-apply plugin: 'maven-publish'
 
 sourceCompatibility = javaVersion
 targetCompatibility = javaVersion
@@ -51,12 +51,4 @@ wsdl2java {
         ["$wsdlDir/UslugaBIRzewnPubl.xsd"]
     ]
     generatedWsdlDir = file("$projectDir/generated")
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-        }
-    }
 }
