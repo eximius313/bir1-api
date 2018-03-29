@@ -1,3 +1,5 @@
+[![Build Status](https://img.shields.io/travis/eximius313/bir1-api.svg)](https://travis-ci.org/eximius313/bir1-api) [![Bintray](https://api.bintray.com/packages/eximius313/bir1-api/maven/images/download.svg)](https://bintray.com/eximius313/bir1-api/maven)
+    
 # Baza Internetowa REGON - Java API
 
 Java API do [Bazy Internetowej REGON](https://wyszukiwarkaregon.stat.gov.pl/appBIR/index.aspx)
