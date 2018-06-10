@@ -20,6 +20,7 @@ import eximius.bir1.report.ReportHandler;
 import eximius.bir1.value.ValueHandler;
 
 final class ConnectionImpl implements Connection {
+    private static final String PRODUCTION_ENDPOINT_URL = "https://wyszukiwarkaregon.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc";
     private static final String HEADER_SID = "sid";
     private static final int TIMEOUT_IN_MINUTES = 59;
 
@@ -37,10 +38,13 @@ final class ConnectionImpl implements Connection {
 
     private final ValueHandler valueHandler;
 
-    ConnectionImpl(final String apiKey) {
+    ConnectionImpl(final String apiKey, boolean testing) {
         this.apiKey = apiKey;
         final UslugaBIRzewnPubl service = new UslugaBIRzewnPubl();
         this.port = service.getE3(new AddressingFeature());
+        if(testing == false) {
+            setProductionEndpointUrl();
+        }
         dataHandler = new DataHandlerImpl(this, port);
         reportHandler = new ReportHandlerImpl(this, port);
         valueHandler = new ValueHandlerImpl(this, port);
@@ -84,5 +88,10 @@ final class ConnectionImpl implements Connection {
     @Override
     public final void close() throws IOException {
         port.wyloguj(sessionKey);
+    }
+
+    private void setProductionEndpointUrl() {
+        ((BindingProvider) this.port).getRequestContext()
+            .put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, PRODUCTION_ENDPOINT_URL);
     }
 }
