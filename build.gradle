@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        javaVersion = '11'
+        javaVersion = '1.8'
         encoding = 'UTF-8'
         cxfVersion = "3.3.2"
     }
