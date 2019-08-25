@@ -1,23 +1,14 @@
 buildscript {
     ext {
-        javaVersion = "1.8"
-    }
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
-        classpath group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.0'
-        classpath group: 'javax.activation', name: 'javax.activation-api', version: '1.2.0'
-        classpath group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
-        classpath group: 'javax.jws', name: 'jsr181-api', version: '1.0-MR1'
+        javaVersion = '1.8'
+        encoding = 'UTF-8'
+        cxfVersion = "3.3.2"
     }
 }
 
 plugins {
     id 'no.nils.wsdl2java' version '0.10'
-    id 'org.shipkit.java' version '2.0.13'
+    id 'org.shipkit.java' version '2.2.5'
 }
 
 apply plugin: 'java-library'
@@ -25,9 +16,8 @@ apply plugin: 'java-library'
 sourceCompatibility = javaVersion
 targetCompatibility = javaVersion
 
-compileJava.options.encoding = 'UTF-8'
-compileTestJava.options.encoding = 'UTF-8'
-
+compileJava.options.encoding = encoding
+compileTestJava.options.encoding = encoding
 
 group = 'eximius.bir1'
 description = 'Java API for Internet REGON Database (BIR1)'
@@ -38,6 +28,11 @@ repositories {
 }
 
 dependencies {
+    wsdl2java (
+        [group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'],
+        [group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'],
+        [group: 'javax.jws', name: 'javax.jws-api', version: '1.1'],
+    )
     implementation (
         [group: 'com.sun.xml.ws', name: 'jaxws-rt', version: '2.3.0']
     )
@@ -46,8 +41,18 @@ dependencies {
 wsdl2java {
     wsdlDir = file("$projectDir/src/main/resources/wsdl")
     wsdlsToGenerate = [
-      ["https://wyszukiwarkaregontest.stat.gov.pl/wsBIR/wsdl/UslugaBIRzewnPubl.xsd"],
+      ["https://wyszukiwarkaregontest.stat.gov.pl/wsBIR/wsdl/UslugaBIRzewnPubl-ver11-test.wsdl"],
 //        ["$wsdlDir/UslugaBIRzewnPubl.xsd"]
     ]
     generatedWsdlDir = file("$projectDir/generated")
 }
+
+wsdl2javaExt {
+    cxfVersion = project.ext.cxfVersion
+}
+
+clean.delete << file("$projectDir/generated")
+
+// For @javax.xml.bind.annotation.XmlSchema(namespace = "http://CIS/BIR/PUBL/2014/07/DataContract", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+// FIXME
+tasks.withType(Javadoc).all { enabled = false }

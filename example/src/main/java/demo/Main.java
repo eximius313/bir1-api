@@ -10,7 +10,7 @@ import eximius.bir1.report.ReportHandler;
 import eximius.bir1.report.ReportType;
 import eximius.bir1.value.ValueHandler;
 
-public class Main {
+class Main {
 
     private static final String GUS_NIP = "5261040828";
     private static final String INVALID_NIP = "1261040828";

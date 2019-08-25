@@ -1,6 +1,6 @@
 package eximius.bir1;
 
-import cis.bir.publ._2014._07.IUslugaBIRzewnPubl;
+import org.tempuri.IUslugaBIRzewnPubl;
 
 abstract class AbstractHandler {
     private final ConnectionImpl connection;

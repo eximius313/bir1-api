@@ -10,17 +10,21 @@ public class Company {
 
     private String name;
 
-    private String woj;
+    private String voivodeship;
 
-    private String pow;
+    private String county;
 
-    private String gm;
+    private String community;
 
-    private String city;
+    private String locality;
 
     private String postCode;
 
     private String street;
+
+    private String houseNo;
+
+    private String flatNo;
 
     private CompanyType type;
 
@@ -44,40 +48,40 @@ public class Company {
         this.name = name;
     }
 
-    public String getWoj() {
-        return woj;
+    @XmlElement(name = "Wojewodztwo")
+    public String getVoivodeship() {
+        return voivodeship;
     }
 
-    @XmlElement(name = "Wojewodztwo")
-    public void setWoj(String woj) {
-        this.woj = woj;
+    public void setVoivodeship(String voivodeship) {
+        this.voivodeship = voivodeship;
     }
 
     @XmlElement(name = "Powiat")
-    public String getPow() {
-        return pow;
+    public String getCounty() {
+        return county;
     }
 
-    public void setPow(String pow) {
-        this.pow = pow;
+    public void setCounty(String county) {
+        this.county = county;
     }
 
     @XmlElement(name = "Gmina")
-    public String getGm() {
-        return gm;
+    public String getCommunity() {
+        return community;
     }
 
-    public void setGm(String gm) {
-        this.gm = gm;
+    public void setCommunity(String community) {
+        this.community = community;
     }
 
     @XmlElement(name = "Miejscowosc")
-    public String getCity() {
-        return city;
+    public String getLocality() {
+        return locality;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocality(String locality) {
+        this.locality = locality;
     }
 
     @XmlElement(name = "KodPocztowy")
@@ -98,6 +102,24 @@ public class Company {
         this.street = street;
     }
 
+    @XmlElement(name = "NrNieruchomosci")
+    public String getHouseNo() {
+        return houseNo;
+    }
+
+    public void setHouseNo(String houseNo) {
+        this.houseNo = houseNo;
+    }
+
+    @XmlElement(name = "NrLokalu")
+    public String getFlatNo() {
+        return flatNo;
+    }
+
+    public void setFlatNo(String flatNo) {
+        this.flatNo = flatNo;
+    }
+
     @XmlElement(name = "Typ")
     public CompanyType getType() {
         return type;
@@ -115,5 +137,17 @@ public class Company {
 
     public void setSilos(Silos silos) {
         this.silos = silos;
+    }
+
+    public String getAddress() {
+        return (coalesce(getStreet()) + " " + coalesce(getHouseNo())).trim() + (isEmpty(getFlatNo()) ? "" : " lok. "+getFlatNo().trim());
+    }
+
+    private String coalesce(final String string) {
+        return string == null ? "" : string;
+    }
+
+    private boolean isEmpty(final String string) {
+        return string == null || string.isEmpty();
     }
 }

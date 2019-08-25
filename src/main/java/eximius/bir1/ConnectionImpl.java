@@ -12,9 +12,9 @@ import javax.xml.ws.BindingProvider;
 import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.soap.AddressingFeature;
 
+import org.tempuri.IUslugaBIRzewnPubl;
 import org.tempuri.UslugaBIRzewnPubl;
 
-import cis.bir.publ._2014._07.IUslugaBIRzewnPubl;
 import eximius.bir1.data.DataHandler;
 import eximius.bir1.report.ReportHandler;
 import eximius.bir1.value.ValueHandler;

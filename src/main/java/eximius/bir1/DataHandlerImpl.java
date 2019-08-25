@@ -11,7 +11,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import cis.bir.publ._2014._07.IUslugaBIRzewnPubl;
+import org.tempuri.IUslugaBIRzewnPubl;
+
 import cis.bir.publ._2014._07.datacontract.ObjectFactory;
 import cis.bir.publ._2014._07.datacontract.ParametryWyszukiwania;
 import eximius.bir1.data.Company;
@@ -33,7 +34,7 @@ final class DataHandlerImpl extends AbstractHandler implements DataHandler {
                 .flatMap(this::searchForCompany);
     }
 
-    private ParametryWyszukiwania createParamsByNip(JAXBElement<String> elem) {
+    private ParametryWyszukiwania createParamsByNip(final JAXBElement<String> elem) {
         final ParametryWyszukiwania p = factory.createParametryWyszukiwania();
         p.setNip(elem);
         return p;
@@ -48,7 +49,7 @@ final class DataHandlerImpl extends AbstractHandler implements DataHandler {
                 .flatMap(this::searchForCompany);
     }
 
-    private ParametryWyszukiwania createParamsByKrs(JAXBElement<String> elem) {
+    private ParametryWyszukiwania createParamsByKrs(final JAXBElement<String> elem) {
         final ParametryWyszukiwania p = factory.createParametryWyszukiwania();
         p.setKrs(elem);
         return p;
@@ -63,7 +64,7 @@ final class DataHandlerImpl extends AbstractHandler implements DataHandler {
                 .flatMap(this::searchForCompany);
     }
 
-    private ParametryWyszukiwania createParamsByRegon(JAXBElement<String> elem) {
+    private ParametryWyszukiwania createParamsByRegon(final JAXBElement<String> elem) {
         final ParametryWyszukiwania p = factory.createParametryWyszukiwania();
         p.setRegon(elem);
         return p;
@@ -71,10 +72,11 @@ final class DataHandlerImpl extends AbstractHandler implements DataHandler {
 
     private final Optional<Company> searchForCompany(final ParametryWyszukiwania p) {
         reinitiateConnection();
-        return ofNullable(port.daneSzukaj(p))
+        return ofNullable(port.daneSzukajPodmioty(p))
                 .filter(Utils::nonBlank)
                 .map(str -> {
                     try {
+                        System.out.println("RES:"+str);
                         final JAXBContext context = JAXBContext.newInstance(Root.class);
                         return (Root) context.createUnmarshaller().unmarshal(new StringReader(str));
                     } catch (JAXBException e) {

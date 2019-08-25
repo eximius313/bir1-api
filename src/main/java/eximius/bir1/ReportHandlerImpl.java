@@ -4,7 +4,8 @@ import static java.util.Optional.ofNullable;
 
 import java.util.Optional;
 
-import cis.bir.publ._2014._07.IUslugaBIRzewnPubl;
+import org.tempuri.IUslugaBIRzewnPubl;
+
 import eximius.bir1.report.ReportHandler;
 import eximius.bir1.report.ReportType;
 

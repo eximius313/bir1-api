@@ -4,7 +4,8 @@ import static eximius.bir1.Utils.isBlank;
 
 import java.util.stream.Stream;
 
-import cis.bir.publ._2014._07.IUslugaBIRzewnPubl;
+import org.tempuri.IUslugaBIRzewnPubl;
+
 import eximius.bir1.value.MessageCode;
 import eximius.bir1.value.ServiceStatus;
 import eximius.bir1.value.SessionStatus;
