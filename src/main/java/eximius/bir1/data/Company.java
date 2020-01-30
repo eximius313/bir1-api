@@ -6,6 +6,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement(name = "dane")
 public class Company {
+
+    private String nip;
+
+    private Character statusNip;
+
     private String regon;
 
     private String name;
@@ -29,6 +34,26 @@ public class Company {
     private CompanyType type;
 
     private Silos silos;
+
+    private String dataZakonczeniaDzialalnosci;
+
+    @XmlElement(name = "Nip")
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
+    @XmlElement(name = "StatusNip")
+    public void setStatusNip(Character statusNip) {
+        this.statusNip = statusNip;
+    }
+
+    public Character getStatusNip() {
+        return statusNip;
+    }
 
     @XmlElement(name = "Regon")
     public String getRegon() {
@@ -137,6 +162,15 @@ public class Company {
 
     public void setSilos(Silos silos) {
         this.silos = silos;
+    }
+
+    @XmlElement(name = "DataZakonczeniaDzialalnosci")
+    public void setDataZakonczeniaDzialalnosci(String dataZakonczeniaDzialalnosci) {
+        this.dataZakonczeniaDzialalnosci = dataZakonczeniaDzialalnosci;
+    }
+
+    public String getDataZakonczeniaDzialalnosci() {
+        return dataZakonczeniaDzialalnosci;
     }
 
     public String getAddress() {

@@ -33,3 +33,4 @@ build/
 .gradle
 .cache-main
 .cache-tests
+docs-src/

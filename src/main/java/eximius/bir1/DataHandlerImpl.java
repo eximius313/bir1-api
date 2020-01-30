@@ -28,6 +28,7 @@ final class DataHandlerImpl extends AbstractHandler implements DataHandler {
     @Override
     public final Optional<Company> getDataByNip(final String nip) {
         return ofNullable(nip)
+                .map(v -> v.replaceAll("[-\\s]", ""))
                 .filter(Utils::nonBlank)
                 .map(factory::createParametryWyszukiwaniaNip)
                 .map(this::createParamsByNip)
