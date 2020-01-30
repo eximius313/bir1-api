@@ -11,7 +11,10 @@ http://bip.stat.gov.pl/dzialalnosc-statystyki-publicznej/rejestr-regon/interfejs
 [PDF](https://cdn.rawgit.com/eximius313/bir1-api/d841d6a4/docs/regon%20-%20instrukcja%20techniczna%20BIR1%20dla%20podm.komercyjnych_010.pdf)
 
 ## DEMO:
-```
+<details open>
+<summary>Java</summary>
+
+```java
 public class Main {
 
     private static final String GUS_NIP = "5261040828";
@@ -40,3 +43,4 @@ public class Main {
     }
 }
 ```
+</details>
